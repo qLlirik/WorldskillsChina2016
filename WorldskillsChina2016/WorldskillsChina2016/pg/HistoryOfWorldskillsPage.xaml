@@ -1,0 +1,84 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.HistoryOfWorldskillsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="History of Worldskills" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="History of Worldskills" FontSize="25" Margin="20" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Black" BorderThickness="1" Width="200" Height="350">
+                    <WrapPanel>
+                        <Image MouseLeftButtonDown="click_Image" Tag="BEIJING, Jan. 23 (Xinhua) -- China is preparing for the 44th WorldSkills Competition to be held in Abu Dhabi, capital city of United Arab Emirates, this year, an official said Monday.
+
+China has held national qualification trials and 388 candidates have been shortlisted to join the national squad, said Lu Aihong, spokesperson for the Ministry of Human Resources and Social Security.
+
+China will host ChinaSkills Competition this June so that the candidates gain exposure to the competition rules, Lu told a press conference.
+
+The WorldSkills event will strengthen vocational skills among talented personnel, promote international exchanges and enhance China's national influence on the global stage, said Lu.
+
+China won five gold medals, six silver medals and four bronze medals in the 43rd WorldSkills Competition held in Sao Paulo, Brazil, in 2015.
+
+Shanghai is in the running to host the 46th WorldSkills Competition in 2021, along with cities in Switzerland and South Africa.
+
+The final decision will be voted on by the WorldSkills International delegates in October 2017 at the General Assembly to be held in Abu Dhabi.
+
+WorldSkills dates back to 1950 when it was first held in Madrid, Spain. The biennial event seeks to increase the awareness and prestige of vocational and blue-collar professions. China first participated in the event in 2011." ToolTip="Worldskills Logo" Margin="10" Source="/WorldskillsChina2016;component/im/logo.png" Width="100"/>
+                        <Image MouseLeftButtonDown="click_Image" Tag="The Albert Vidal Award is a prestigious award, named after the founder of WorldSkills International (formerly known as the International Vocational Training Organisation). During the first thirty-one WorldSkills Competitions (formerly known as the Vocational Training Competitions), Francisco Albert-Vidal, from Spain, was responsible for the achievement of the original goals in a changing world: 33 years as an untiring promoter in his position as Secretary General and seven years as President of the International Organisation constantly presenting new ideas. The Vocational Training Competitions became his life's work and the International Organisation was shaped into what it is today. In memory of Albert Vidal, the Award recognises the Competitor that achieves the overall highest score out of all Competitors in all Skill categories.
+
+The Albert Vidal Award is connected with the implementation of the 500 mark system, developed by former WorldSkills President Cees Beuk, after the WorldSkills Competition 1985 held in Osaka, Japan. The new system was developed upon the request from the Technical Committee Chairman René Gonthier and his vision of making the Competition scores more comparable and universal.
+
+With the new system, it became possible to compare the scores from skill to skill and from Expert to Expert within each skill, making their scoring behaviour more transparent. The new system became effective in 1988 (when the WorldSkills Competition was held in Sydney, Australia) at which the 'Best of the Competition Award' was introduced for the first time.
+
+After Albert Vidal's death in October 1993 the Award was renamed (proposed by Tjerk Dusseldorp, past President, WSI) from the 'Best of the Competition Award' to the 'Albert Vidal Award' in order to honour the contributions of Albert Vidal for his decades of devotion to the WorldSkills movement. The new name of the award, first became effective in 1995 when the WorldSkills Competition took place in Lyon, France. " ToolTip="Francisco Albert-Vidal" Margin="10" Source="/WorldskillsChina2016;component/im/FranciscoAlbertVidal.jpg" Height="70"/>
+                        <Image MouseLeftButtonDown="click_Image" Tag="Following the first national skills competition hosted by WorldSkills Palestine, the organization is appealing to other Members to help them in the training of Competitors for WorldSkills Abu Dhabi 2017. WorldSkills Palestine, which joined WorldSkills during the General Assembly in 2015, held its Competition on 5 October.
+
+Fourteen finalists from the West Bank took part in the national competition in Ramallah. They competed in four skills areas: Wall and Floor Tiling, Painting and Decorating, Graphic Design Technology, and Pâtisserie and Confectionery. Each participant was provided with skills and life development training, to support their participation in the national competition.
+
+Trophies were awarded by prominent supporters including Dr. Sabri Saidom, the Minister of Dr Sabri Saidam, the Minister of Education on tour in front of  Amins workshop.jpgEducation, Nasser Kitami, the Deputy Minister of Labour, Khalil Rizaq, the Chairman of the Federation of Palestinian Chambers of Commerce, Industry and Agriculture (FPCCIA), and the Chinese Ambassador to Palestine. The trophies featured the character Handala, a little boy who symbolizes young Palestinians building a better future, created by the cartoonist Naji Al-Ali.
+
+This was an excellent first competition for Palestine, said the Michael Buechele, Technical Delegate, Palestine. We were delighted to have more than 250 young TVET graduates register to participate. 
+
+Those registrations came from throughout the West Bank and Gaza, with 20 participants per skill being invited to a short practical assessment and five selected for each final. Ultimately the Competitors from Gaza did not receive the necessary permissions to travel, so only Competitors from the West Bank took part. 
+
+Now after our national competition the hard work is beginning, said Mr. Buechele. We urgently need help to train the three individuals we would like to take to WorldSkills Abu Dhabi 2017 to compete.  If any Member organization can support this training I would ask them to contact me as soon as possible.
+
+The TVET sector in the Palestinian territories is complex. The Ministry of Education and the Ministry of Labour operate vocational schools, as does the United Nations. There are also private schools that teach skills.
+
+WorldSkills Palestine falls under the Federation of Palestinian Chambers of Commerce, Industry and Agriculture, which oversees 14 Chambers in the West Bank and five in Gaza." ToolTip="The first national competition" Margin="10" Source="/WorldskillsChina2016;component/im/TheFirstNatioanlCompetition.jpg" Width="170"/>
+                        <Image MouseLeftButtonDown="click_Image" Tag="The WorldSkills International Board of Directors meeting at WorldSkills São Paulo 2015 included formal acknowledgement that the 2015-2019 Board is now in office. The Board expressed thanks to Rafael Lucchesi, ex officio WorldSkills São Paulo 2015, for his contributions, especially in connection with the Competition. Lucchesi pledged to contribute to WorldSkills in future. Also, the Board extended special thanks for long-standing contributions to Worldskills to Roberto Spada, retiring after two terms from his position of Vice President for Special Affairs. Spada expressed his thanks to the Board of Directors, and committed to remain involved with WorldSkills.
+
+The Board of Directors for 2015–2019 is:
+
+Simon Bartley (United Kingdom) – President of WorldSkills and Chair of the WorldSkills International Board of Directors
+
+Stefan Praschl (Austria) - Vice President for Technical Affairs and Chair of the Competitions Committee
+
+Jos de Goey (Netherlands) – Vice President for Strategic Affairs and Chair of the Strategy Committee
+
+San-Quei Lin (Chinese Taipei) – Vice President for Special Affairs
+
+Michael Fung (Hong Kong, China) – Vice Chair of the Competitions Committee
+
+Laurence Gates (France) – Vice Chair of the Strategy Committee
+
+Terry Cooke (Canada) – Treasurer
+
+Ali Al Marzouqi (United Arab Emirates) – Ex officio WorldSkills Abu Dhabi 2017" ToolTip="Current board of directors" Margin="10" Source="/WorldskillsChina2016;component/im/CurrentBoardOfDirectors.jpg" Width="170"/>
+                    </WrapPanel>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="20 0 0 0">
+                    <ScrollViewer Height="350" VerticalScrollBarVisibility="Auto">
+                        <TextBlock x:Name="txbDescription" Width="500" TextWrapping="Wrap" Margin="10"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

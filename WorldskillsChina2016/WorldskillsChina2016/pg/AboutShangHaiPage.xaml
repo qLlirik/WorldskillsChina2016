@@ -1,0 +1,21 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.AboutShangHaiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="About Shang Hai" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="About Shang Hai" FontSize="22" Margin="10" TextAlignment="Center"/>
+            <TabControl Width="700" Height="350">
+                <TabItem Header="History"/>
+                <TabItem Header="Event"/>
+                <TabItem Header="Tourism"/>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</Page>

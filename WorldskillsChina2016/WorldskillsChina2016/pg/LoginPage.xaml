@@ -1,0 +1,42 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="Login" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10">
+                <TextBlock Text="Authorization" TextAlignment="Center" FontSize="22"/>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Id Number: "/>
+                    <TextBox x:Name="tbxIdNumber" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="  Password: "/>
+                    <PasswordBox x:Name="pbxPassword" Width="200" />
+                </StackPanel>
+
+                <TextBlock Text="Введите символы с картинки!" TextAlignment="Center"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Auth Code: " VerticalAlignment="Center"/>
+                    <Image x:Name="img" MouseLeftButtonDown="click_Image"/>
+                    <TextBox x:Name="tbxAuthCode" Width="100" Margin="10"/>
+                </StackPanel>
+                
+                <CheckBox x:Name="chbxRememberMe" Content="Remember Me" HorizontalAlignment="Center"/>
+
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+                    <Button x:Name="btnLogin" Click="click_Login" Content="Login" Width="70"/>
+                    <Button Click="click_Cancel" Content="Cancel" Width="70" Margin=" 20 0 0 0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="WorldskillsChina2016.cs.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WorldskillsChina2016.cs"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Width="223" Margin="10" Height="145">
+            <Image x:Name="imgUCImage" Width="80" Height="100" Margin="10"/>
+        <TextBlock TextAlignment="Center" FontSize="10" TextWrapping="Wrap" Width="220">
+            <Run x:Name="txbUCUserName"/>
+            ( <Run x:Name="txbUCProvinceName"/> )
+        </TextBlock>
+    </StackPanel>
+</UserControl>

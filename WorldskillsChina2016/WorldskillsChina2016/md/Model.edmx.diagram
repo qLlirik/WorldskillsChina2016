@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e98a2f7ab4d54180a5e1f5ee96bef817" Name="Diagram1">
+        <EntityTypeShape EntityType="WSR2017_DBModel.Championship" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Competition" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.CompetitionGroup" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Event" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Okrug" Width="1.5" PointX="1.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Participation" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Region" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Result" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Role" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Shedule" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.Team" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSR2017_DBModel.User" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Participation_Championship" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Shedule_Championship" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Competition_CompetitionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Participation_Competition" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Shedule_Competition" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Region_Okrug" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Participation_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Participation_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_Result_Participation" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_User_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="WSR2017_DBModel.CompetitionInChampionship" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

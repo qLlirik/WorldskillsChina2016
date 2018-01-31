@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище WSR2017_DBModelContainer" CdmEntityContainer="Entity">
+    <EntitySetMapping Name="Championship">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Championship">
+        <MappingFragment StoreEntitySet="Championship">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CountOfCompetitiors" ColumnName="CountOfCompetitiors" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competition">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Competition">
+        <MappingFragment StoreEntitySet="Competition">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompetitionGroupID" ColumnName="CompetitionGroupID" />
+          <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
+          <ScalarProperty Name="NameRussian" ColumnName="NameRussian" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="DefinitionRussian" ColumnName="DefinitionRussian" />
+          <ScalarProperty Name="PlanBuildingFilePath" ColumnName="PlanBuildingFilePath" />
+          <ScalarProperty Name="InfrastructureFilePath" ColumnName="InfrastructureFilePath" />
+          <ScalarProperty Name="WSI" ColumnName="WSI" />
+          <ScalarProperty Name="IsTeam" ColumnName="IsTeam" />
+          <ScalarProperty Name="DefinitionEnglish" ColumnName="DefinitionEnglish" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompetitionGroup">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.CompetitionGroup">
+        <MappingFragment StoreEntitySet="CompetitionGroup">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Okrug">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Okrug">
+        <MappingFragment StoreEntitySet="Okrug">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participation">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Participation">
+        <MappingFragment StoreEntitySet="Participation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompetitorNumber" ColumnName="CompetitorNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="CompetitionID" ColumnName="CompetitionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Stolica" ColumnName="Stolica" />
+          <ScalarProperty Name="OkrugID" ColumnName="OkrugID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Result">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ParticipationID" ColumnName="ParticipationID" />
+          <ScalarProperty Name="Module" ColumnName="Module" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shedule">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Shedule">
+        <MappingFragment StoreEntitySet="Shedule">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompetitionID" ColumnName="CompetitionID" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="DateExecution" ColumnName="DateExecution" />
+          <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+          <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Team">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.Team">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="WSR2017_DBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="CompetitionIDForVolunteer" ColumnName="CompetitionIDForVolunteer" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+          <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+          <ScalarProperty Name="IsRemember" ColumnName="IsRemember" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CompetitionInChampionship" TypeName="WSR2017_DBModel.CompetitionInChampionship" StoreEntitySet="CompetitionInChampionship">
+      <EndProperty Name="Championship">
+        <ScalarProperty Name="ID" ColumnName="ChampionshipID" />
+      </EndProperty>
+      <EndProperty Name="Competition">
+        <ScalarProperty Name="ID" ColumnName="CompettitionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

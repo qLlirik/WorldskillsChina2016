@@ -1,0 +1,64 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.PreviousCompetitionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="Previous Competitions" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Previous Competitions" FontSize="22" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+                <TextBlock Text="Ordianl No. : "/>
+                <TextBox x:Name="tbxOrdianlNo" Width="100"/>
+                <TextBlock Text="              City or Country: "/>
+                <TextBox x:Name="tbxCityOrCountry" Width="150"/>
+                <Button Click="click_Search" Content="Search" Width="80" Margin="20 0 0 0"/>
+            </StackPanel>
+            <TextBlock TextAlignment="Center" FontWeight="Bold" Margin="10">
+                <Run>Total Records: </Run>
+                <Run x:Name="txbTotalRecords"/>
+            </TextBlock>
+            <ListView x:Name="lv" Width="770" Height="300">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Ordinal No." Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ID}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Year" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=DateStart, StringFormat={}{0:yyyy}}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="City, Country" Width="400">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Address}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Member Number" Width="140">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=CountOfCompetitiors}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

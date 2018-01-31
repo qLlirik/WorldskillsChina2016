@@ -1,0 +1,18 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.AboutWorldskillsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="About Worldskills" FontSize="22" FontFamily="Calibri">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="About Worldskills" TextAlignment="Center" Margin="20" FontSize="25"/>
+            <Button Click="click_HistoryOfWorldskills" Content="History of Worldskills" FontSize="22" Width="250" Height="50" Margin="10"/>
+            <Button Click="click_CompetitionSkills" Content="Competition Skills" FontSize="22" Width="250" Height="50" Margin="10"/>
+            <Button Click="click_PreviousCompetitions" Content="Previous Competitions" FontSize="22" Width="250" Height="50" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,34 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.CompetitionSkillsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="Competition Skills" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Competition Skills" FontSize="25" Margin="10" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Black" BorderThickness="1" Width="350" Height="400">
+                    <TreeView>
+                        <TreeViewItem Header="All Fields">
+                            <TreeViewItem Header="Transportation and Logistics"/>
+                            <TreeViewItem Header="Construction and Building Technology"/>
+                            <TreeViewItem Header="Manufacturing and Engineering Technology"/>
+                            <TreeViewItem Header="Information and Communication Technology"/>
+                            <TreeViewItem Header="Creative Arts and Fashion"/>
+                            <TreeViewItem Header="Social and Personal Services"/>
+                        </TreeViewItem>
+                    </TreeView>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="20 0 0 0" Width="390">
+                    <TextBlock x:Name="txbDescription" Margin="10"/>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

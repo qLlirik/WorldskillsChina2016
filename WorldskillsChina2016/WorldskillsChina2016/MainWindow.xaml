@@ -1,0 +1,44 @@
+﻿<Window x:Class="WorldskillsChina2016.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorldskillsChina2016"
+        mc:Ignorable="d"
+        Title="Skills Competition Management System" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="16" FontFamily="Calibri">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FF6995C2">
+            <Image Width="70" HorizontalAlignment="Left" Margin="10 5" Source="/WorldskillsChina2016;component/im/logo.PNG"/>
+            <Button x:Name="btnBack" Content="Back" Width="70" Height="30" HorizontalAlignment="Left" Margin="80 0 0 0"/>
+            <TextBlock Text="Worldskills China Competition 2016" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="28"/>
+            <Button x:Name="btnLogout" Content="Logout" Width="70" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0"/>
+        </Grid>
+
+        <Grid x:Name="grDop" Visibility="Hidden" Height="150" Background="#FF6995C2" Grid.Row="1" VerticalAlignment="Top" Margin="0 -50 0 0">
+            <Image Source="/WorldskillsChina2016;component/im/logo.PNG" Margin="20" HorizontalAlignment="Left"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock TextAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="28">
+                    <Run>Skills Competition</Run>
+                    <LineBreak/>
+                    <Run>Management System 2016</Run>
+                </TextBlock>
+                <TextBlock TextAlignment="Center" FontStyle="Italic">
+                    <Run>Shang Hai, China</Run>
+                    <LineBreak/>
+                    <Run>Saturday August 13 2016</Run>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Frame x:Name="frmCont" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        
+        <Grid Grid.Row="2" Background="#FF6995C2">
+            <TextBlock x:Name="txbTimer" Text="sFsdd" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Grid>
+    </Grid>
+</Window>

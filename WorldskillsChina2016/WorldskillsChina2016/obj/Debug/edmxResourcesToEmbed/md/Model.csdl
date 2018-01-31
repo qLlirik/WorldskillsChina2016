@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WSR2017_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Championship">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinish" Type="DateTime" Precision="0" />
+    <Property Name="Site" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Place" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CountOfCompetitiors" Type="Int32" />
+    <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Championship" FromRole="Championship" ToRole="Participation" />
+    <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Championship" FromRole="Championship" ToRole="Shedule" />
+    <NavigationProperty Name="Competition" Relationship="Self.CompetitionInChampionship" FromRole="Championship" ToRole="Competition" />
+  </EntityType>
+  <EntityType Name="Competition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CompetitionGroupID" Type="Int32" />
+    <Property Name="NameEnglish" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NameRussian" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="DefinitionRussian" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="PlanBuildingFilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InfrastructureFilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WSI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsTeam" Type="Boolean" />
+    <Property Name="DefinitionEnglish" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CompetitionGroup" Relationship="Self.FK_Competition_CompetitionGroup" FromRole="Competition" ToRole="CompetitionGroup" />
+    <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Competition" FromRole="Competition" ToRole="Participation" />
+    <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Competition" FromRole="Competition" ToRole="Shedule" />
+    <NavigationProperty Name="Championship" Relationship="Self.CompetitionInChampionship" FromRole="Competition" ToRole="Championship" />
+  </EntityType>
+  <EntityType Name="CompetitionGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK_Competition_CompetitionGroup" FromRole="CompetitionGroup" ToRole="Competition" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Definition" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateFinish" Type="DateTime" Precision="0" />
+    <Property Name="Site" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Okrug">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_Region_Okrug" FromRole="Okrug" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Participation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompetitorNumber" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ChampionshipID" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="CompetitionID" Type="Int32" />
+    <NavigationProperty Name="Championship" Relationship="Self.FK_Participation_Championship" FromRole="Participation" ToRole="Championship" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK_Participation_Competition" FromRole="Participation" ToRole="Competition" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_Participation_Team" FromRole="Participation" ToRole="Team" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Participation_User" FromRole="Participation" ToRole="User" />
+    <NavigationProperty Name="Result" Relationship="Self.FK_Result_Participation" FromRole="Participation" ToRole="Result" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Stolica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="OkrugID" Type="Int32" />
+    <NavigationProperty Name="Okrug" Relationship="Self.FK_Region_Okrug" FromRole="Region" ToRole="Okrug" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Region" FromRole="Region" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ParticipationID" Type="Int32" Nullable="false" />
+    <Property Name="Module" Type="Int32" />
+    <Property Name="Mark" Type="Double" />
+    <NavigationProperty Name="Participation" Relationship="Self.FK_Result_Participation" FromRole="Result" ToRole="Participation" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Shedule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CompetitionID" Type="Int32" />
+    <Property Name="Day" Type="Int32" />
+    <Property Name="DateExecution" Type="DateTime" Precision="3" />
+    <Property Name="TimeStart" Type="Time" Precision="7" />
+    <Property Name="TimeEnd" Type="Time" Precision="7" />
+    <Property Name="Definition" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ChampionshipID" Type="Int32" />
+    <NavigationProperty Name="Championship" Relationship="Self.FK_Shedule_Championship" FromRole="Shedule" ToRole="Championship" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK_Shedule_Competition" FromRole="Shedule" ToRole="Competition" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Team" FromRole="Team" ToRole="Participation" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="IDNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="IsMale" Type="Boolean" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="RegionID" Type="Int32" />
+    <Property Name="PhotoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CompetitionIDForVolunteer" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ContactAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="IsRemember" Type="Boolean" />
+    <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_User" FromRole="User" ToRole="Participation" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_User_Region" FromRole="User" ToRole="Region" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_Participation_Championship">
+    <End Role="Championship" Type="Self.Championship" Multiplicity="0..1" />
+    <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Championship">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="ChampionshipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shedule_Championship">
+    <End Role="Championship" Type="Self.Championship" Multiplicity="0..1" />
+    <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Championship">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Shedule">
+        <PropertyRef Name="ChampionshipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Competition_CompetitionGroup">
+    <End Role="CompetitionGroup" Type="Self.CompetitionGroup" Multiplicity="0..1" />
+    <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompetitionGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Competition">
+        <PropertyRef Name="CompetitionGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Participation_Competition">
+    <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competition">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="CompetitionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shedule_Competition">
+    <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competition">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Shedule">
+        <PropertyRef Name="CompetitionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_Okrug">
+    <End Role="Okrug" Type="Self.Okrug" Multiplicity="0..1" />
+    <End Role="Region" Type="Self.Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Okrug">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="OkrugID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Participation_Team">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Participation_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Participation">
+    <End Role="Participation" Type="Self.Participation" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="ParticipationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompetitionInChampionship">
+    <End Role="Championship" Type="Self.Championship" Multiplicity="*" />
+    <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Championship" EntityType="Self.Championship" />
+    <EntitySet Name="Competition" EntityType="Self.Competition" />
+    <EntitySet Name="CompetitionGroup" EntityType="Self.CompetitionGroup" />
+    <EntitySet Name="Event" EntityType="Self.Event" />
+    <EntitySet Name="Okrug" EntityType="Self.Okrug" />
+    <EntitySet Name="Participation" EntityType="Self.Participation" />
+    <EntitySet Name="Region" EntityType="Self.Region" />
+    <EntitySet Name="Result" EntityType="Self.Result" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Shedule" EntityType="Self.Shedule" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Team" EntityType="Self.Team" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Participation_Championship" Association="Self.FK_Participation_Championship">
+      <End Role="Championship" EntitySet="Championship" />
+      <End Role="Participation" EntitySet="Participation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shedule_Championship" Association="Self.FK_Shedule_Championship">
+      <End Role="Championship" EntitySet="Championship" />
+      <End Role="Shedule" EntitySet="Shedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Competition_CompetitionGroup" Association="Self.FK_Competition_CompetitionGroup">
+      <End Role="CompetitionGroup" EntitySet="CompetitionGroup" />
+      <End Role="Competition" EntitySet="Competition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Participation_Competition" Association="Self.FK_Participation_Competition">
+      <End Role="Competition" EntitySet="Competition" />
+      <End Role="Participation" EntitySet="Participation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shedule_Competition" Association="Self.FK_Shedule_Competition">
+      <End Role="Competition" EntitySet="Competition" />
+      <End Role="Shedule" EntitySet="Shedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_Okrug" Association="Self.FK_Region_Okrug">
+      <End Role="Okrug" EntitySet="Okrug" />
+      <End Role="Region" EntitySet="Region" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Participation_Team" Association="Self.FK_Participation_Team">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Participation" EntitySet="Participation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Participation_User" Association="Self.FK_Participation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Participation" EntitySet="Participation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Participation" Association="Self.FK_Result_Participation">
+      <End Role="Participation" EntitySet="Participation" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Region" Association="Self.FK_User_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="CompetitionInChampionship" Association="Self.CompetitionInChampionship">
+      <End Role="Championship" EntitySet="Championship" />
+      <End Role="Competition" EntitySet="Competition" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
