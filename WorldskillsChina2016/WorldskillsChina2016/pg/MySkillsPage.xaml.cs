@@ -29,8 +29,14 @@ namespace WorldskillsChina2016.pg
             InitializeComponent();
 
             LoadInfo();
-            LoadCompetitorsJudger(wpCompetitors, LoginPage.AuthorizationUser.Participation.First(w => w.UserID == LoginPage.AuthorizationUser.ID).Competition, "C");
-            LoadCompetitorsJudger(wpJudgers, LoginPage.AuthorizationUser.Participation.First(w => w.UserID == LoginPage.AuthorizationUser.ID).Competition, "J");
+            try
+            {
+                LoadCompetitorsJudger(wpCompetitors, LoginPage.AuthorizationUser.Participation.First(w => w.UserID == LoginPage.AuthorizationUser.ID).Competition, "C");
+                LoadCompetitorsJudger(wpJudgers, LoginPage.AuthorizationUser.Participation.First(w => w.UserID == LoginPage.AuthorizationUser.ID).Competition, "J");
+            }
+            catch
+            {
+            }
         }
 
         private void LoadInfo()

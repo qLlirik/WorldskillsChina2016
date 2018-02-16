@@ -112,6 +112,19 @@
     <Property Name="Comment" Type="varchar" MaxLength="100" />
     <Property Name="ChampionshipID" Type="int" />
   </EntityType>
+  <EntityType Name="Sponsorship">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ChampionshipID" Type="int" Nullable="false" />
+    <Property Name="SkillsID" Type="int" Nullable="false" />
+    <Property Name="SponsorClassName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Sponsor" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Picture" Type="image" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -150,6 +163,16 @@
     <Property Name="ContactAddress" Type="varchar" MaxLength="300" />
     <Property Name="IsRemember" Type="bit" />
   </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "WSR2017_DB.dbo.Сотрудники" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Сотрудники">
+          <Property Name="Табельный номер" Type="int" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="30" />
+          <Property Name="Дата рождения" Type="date" />
+          <Property Name="E-mail" Type="nvarchar" MaxLength="30" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="30" />
+          <Property Name="Отдела" Type="nvarchar" MaxLength="30" />
+        </EntityType>-->
   <Association Name="FK_Competition_CompetitionGroup">
     <End Role="CompetitionGroup" Type="Self.CompetitionGroup" Multiplicity="0..1" />
     <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
@@ -282,6 +305,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sponsorship_Championship">
+    <End Role="Championship" Type="Self.Championship" Multiplicity="1" />
+    <End Role="Sponsorship" Type="Self.Sponsorship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Championship">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sponsorship">
+        <PropertyRef Name="ChampionshipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sponsorship_Competition">
+    <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+    <End Role="Sponsorship" Type="Self.Sponsorship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competition">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sponsorship">
+        <PropertyRef Name="SkillsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Region">
     <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -318,6 +365,7 @@
     <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shedule" EntityType="Self.Shedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sponsorship" EntityType="Self.Sponsorship" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -364,6 +412,14 @@
     <AssociationSet Name="FK_Shedule_Competition" Association="Self.FK_Shedule_Competition">
       <End Role="Competition" EntitySet="Competition" />
       <End Role="Shedule" EntitySet="Shedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sponsorship_Championship" Association="Self.FK_Sponsorship_Championship">
+      <End Role="Championship" EntitySet="Championship" />
+      <End Role="Sponsorship" EntitySet="Sponsorship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sponsorship_Competition" Association="Self.FK_Sponsorship_Competition">
+      <End Role="Competition" EntitySet="Competition" />
+      <End Role="Sponsorship" EntitySet="Sponsorship" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Region" Association="Self.FK_User_Region">
       <End Role="Region" EntitySet="Region" />

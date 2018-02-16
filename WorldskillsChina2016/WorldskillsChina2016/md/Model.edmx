@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище WSR2017_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище WSR2017_DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Championship">
           <Key>
             <PropertyRef Name="ID" />
@@ -117,6 +117,19 @@
           <Property Name="Comment" Type="varchar" MaxLength="100" />
           <Property Name="ChampionshipID" Type="int" />
         </EntityType>
+        <EntityType Name="Sponsorship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ChampionshipID" Type="int" Nullable="false" />
+          <Property Name="SkillsID" Type="int" Nullable="false" />
+          <Property Name="SponsorClassName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sponsor" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -155,6 +168,16 @@
           <Property Name="ContactAddress" Type="varchar" MaxLength="300" />
           <Property Name="IsRemember" Type="bit" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "WSR2017_DB.dbo.Сотрудники" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Сотрудники">
+          <Property Name="Табельный номер" Type="int" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="30" />
+          <Property Name="Дата рождения" Type="date" />
+          <Property Name="E-mail" Type="nvarchar" MaxLength="30" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="30" />
+          <Property Name="Отдела" Type="nvarchar" MaxLength="30" />
+        </EntityType>-->
         <Association Name="FK_Competition_CompetitionGroup">
           <End Role="CompetitionGroup" Type="Self.CompetitionGroup" Multiplicity="0..1" />
           <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
@@ -287,6 +310,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sponsorship_Championship">
+          <End Role="Championship" Type="Self.Championship" Multiplicity="1" />
+          <End Role="Sponsorship" Type="Self.Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Championship">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="ChampionshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sponsorship_Competition">
+          <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+          <End Role="Sponsorship" Type="Self.Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="SkillsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Region">
           <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -323,6 +370,7 @@
           <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shedule" EntityType="Self.Shedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sponsorship" EntityType="Self.Sponsorship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -370,6 +418,14 @@
             <End Role="Competition" EntitySet="Competition" />
             <End Role="Shedule" EntitySet="Shedule" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sponsorship_Championship" Association="Self.FK_Sponsorship_Championship">
+            <End Role="Championship" EntitySet="Championship" />
+            <End Role="Sponsorship" EntitySet="Sponsorship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponsorship_Competition" Association="Self.FK_Sponsorship_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Sponsorship" EntitySet="Sponsorship" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Region" Association="Self.FK_User_Region">
             <End Role="Region" EntitySet="Region" />
             <End Role="User" EntitySet="User" />
@@ -379,11 +435,82 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WSR2017_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Championship" EntityType="WSR2017_DBModel.Championship" />
+          <EntitySet Name="Competition" EntityType="WSR2017_DBModel.Competition" />
+          <EntitySet Name="CompetitionGroup" EntityType="WSR2017_DBModel.CompetitionGroup" />
+          <EntitySet Name="Event" EntityType="WSR2017_DBModel.Event" />
+          <EntitySet Name="Okrug" EntityType="WSR2017_DBModel.Okrug" />
+          <EntitySet Name="Participation" EntityType="WSR2017_DBModel.Participation" />
+          <EntitySet Name="Region" EntityType="WSR2017_DBModel.Region" />
+          <EntitySet Name="Result" EntityType="WSR2017_DBModel.Result" />
+          <EntitySet Name="Role" EntityType="WSR2017_DBModel.Role" />
+          <EntitySet Name="Shedule" EntityType="WSR2017_DBModel.Shedule" />
+          <EntitySet Name="Sponsorship" EntityType="WSR2017_DBModel.Sponsorship" />
+          <EntitySet Name="sysdiagrams" EntityType="WSR2017_DBModel.sysdiagrams" />
+          <EntitySet Name="Team" EntityType="WSR2017_DBModel.Team" />
+          <EntitySet Name="User" EntityType="WSR2017_DBModel.User" />
+          <AssociationSet Name="FK_Participation_Championship" Association="WSR2017_DBModel.FK_Participation_Championship">
+            <End Role="Championship" EntitySet="Championship" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shedule_Championship" Association="WSR2017_DBModel.FK_Shedule_Championship">
+            <End Role="Championship" EntitySet="Championship" />
+            <End Role="Shedule" EntitySet="Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponsorship_Championship" Association="WSR2017_DBModel.FK_Sponsorship_Championship">
+            <End Role="Championship" EntitySet="Championship" />
+            <End Role="Sponsorship" EntitySet="Sponsorship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competition_CompetitionGroup" Association="WSR2017_DBModel.FK_Competition_CompetitionGroup">
+            <End Role="CompetitionGroup" EntitySet="CompetitionGroup" />
+            <End Role="Competition" EntitySet="Competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participation_Competition" Association="WSR2017_DBModel.FK_Participation_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shedule_Competition" Association="WSR2017_DBModel.FK_Shedule_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Shedule" EntitySet="Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponsorship_Competition" Association="WSR2017_DBModel.FK_Sponsorship_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Sponsorship" EntitySet="Sponsorship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Okrug" Association="WSR2017_DBModel.FK_Region_Okrug">
+            <End Role="Okrug" EntitySet="Okrug" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participation_Team" Association="WSR2017_DBModel.FK_Participation_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participation_User" Association="WSR2017_DBModel.FK_Participation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Participation" EntitySet="Participation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Participation" Association="WSR2017_DBModel.FK_Result_Participation">
+            <End Role="Participation" EntitySet="Participation" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Region" Association="WSR2017_DBModel.FK_User_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="WSR2017_DBModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="CompetitionInChampionship" Association="WSR2017_DBModel.CompetitionInChampionship">
+            <End Role="Championship" EntitySet="Championship" />
+            <End Role="Competition" EntitySet="Competition" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Championship">
           <Key>
             <PropertyRef Name="ID" />
@@ -396,9 +523,10 @@
           <Property Name="Place" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CountOfCompetitiors" Type="Int32" />
-          <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Championship" FromRole="Championship" ToRole="Participation" />
-          <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Championship" FromRole="Championship" ToRole="Shedule" />
-          <NavigationProperty Name="Competition" Relationship="Self.CompetitionInChampionship" FromRole="Championship" ToRole="Competition" />
+          <NavigationProperty Name="Participation" Relationship="WSR2017_DBModel.FK_Participation_Championship" FromRole="Championship" ToRole="Participation" />
+          <NavigationProperty Name="Shedule" Relationship="WSR2017_DBModel.FK_Shedule_Championship" FromRole="Championship" ToRole="Shedule" />
+          <NavigationProperty Name="Sponsorship" Relationship="WSR2017_DBModel.FK_Sponsorship_Championship" FromRole="Championship" ToRole="Sponsorship" />
+          <NavigationProperty Name="Competition" Relationship="WSR2017_DBModel.CompetitionInChampionship" FromRole="Championship" ToRole="Competition" />
         </EntityType>
         <EntityType Name="Competition">
           <Key>
@@ -415,10 +543,11 @@
           <Property Name="WSI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsTeam" Type="Boolean" />
           <Property Name="DefinitionEnglish" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CompetitionGroup" Relationship="Self.FK_Competition_CompetitionGroup" FromRole="Competition" ToRole="CompetitionGroup" />
-          <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Competition" FromRole="Competition" ToRole="Participation" />
-          <NavigationProperty Name="Shedule" Relationship="Self.FK_Shedule_Competition" FromRole="Competition" ToRole="Shedule" />
-          <NavigationProperty Name="Championship" Relationship="Self.CompetitionInChampionship" FromRole="Competition" ToRole="Championship" />
+          <NavigationProperty Name="CompetitionGroup" Relationship="WSR2017_DBModel.FK_Competition_CompetitionGroup" FromRole="Competition" ToRole="CompetitionGroup" />
+          <NavigationProperty Name="Participation" Relationship="WSR2017_DBModel.FK_Participation_Competition" FromRole="Competition" ToRole="Participation" />
+          <NavigationProperty Name="Shedule" Relationship="WSR2017_DBModel.FK_Shedule_Competition" FromRole="Competition" ToRole="Shedule" />
+          <NavigationProperty Name="Sponsorship" Relationship="WSR2017_DBModel.FK_Sponsorship_Competition" FromRole="Competition" ToRole="Sponsorship" />
+          <NavigationProperty Name="Championship" Relationship="WSR2017_DBModel.CompetitionInChampionship" FromRole="Competition" ToRole="Championship" />
         </EntityType>
         <EntityType Name="CompetitionGroup">
           <Key>
@@ -426,7 +555,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Competition" Relationship="Self.FK_Competition_CompetitionGroup" FromRole="CompetitionGroup" ToRole="Competition" />
+          <NavigationProperty Name="Competition" Relationship="WSR2017_DBModel.FK_Competition_CompetitionGroup" FromRole="CompetitionGroup" ToRole="Competition" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -445,7 +574,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Region" Relationship="Self.FK_Region_Okrug" FromRole="Okrug" ToRole="Region" />
+          <NavigationProperty Name="Region" Relationship="WSR2017_DBModel.FK_Region_Okrug" FromRole="Okrug" ToRole="Region" />
         </EntityType>
         <EntityType Name="Participation">
           <Key>
@@ -457,11 +586,11 @@
           <Property Name="ChampionshipID" Type="Int32" />
           <Property Name="TeamID" Type="Int32" />
           <Property Name="CompetitionID" Type="Int32" />
-          <NavigationProperty Name="Championship" Relationship="Self.FK_Participation_Championship" FromRole="Participation" ToRole="Championship" />
-          <NavigationProperty Name="Competition" Relationship="Self.FK_Participation_Competition" FromRole="Participation" ToRole="Competition" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Participation_Team" FromRole="Participation" ToRole="Team" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Participation_User" FromRole="Participation" ToRole="User" />
-          <NavigationProperty Name="Result" Relationship="Self.FK_Result_Participation" FromRole="Participation" ToRole="Result" />
+          <NavigationProperty Name="Championship" Relationship="WSR2017_DBModel.FK_Participation_Championship" FromRole="Participation" ToRole="Championship" />
+          <NavigationProperty Name="Competition" Relationship="WSR2017_DBModel.FK_Participation_Competition" FromRole="Participation" ToRole="Competition" />
+          <NavigationProperty Name="Team" Relationship="WSR2017_DBModel.FK_Participation_Team" FromRole="Participation" ToRole="Team" />
+          <NavigationProperty Name="User" Relationship="WSR2017_DBModel.FK_Participation_User" FromRole="Participation" ToRole="User" />
+          <NavigationProperty Name="Result" Relationship="WSR2017_DBModel.FK_Result_Participation" FromRole="Participation" ToRole="Result" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -471,8 +600,8 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Stolica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="OkrugID" Type="Int32" />
-          <NavigationProperty Name="Okrug" Relationship="Self.FK_Region_Okrug" FromRole="Region" ToRole="Okrug" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Region" FromRole="Region" ToRole="User" />
+          <NavigationProperty Name="Okrug" Relationship="WSR2017_DBModel.FK_Region_Okrug" FromRole="Region" ToRole="Okrug" />
+          <NavigationProperty Name="User" Relationship="WSR2017_DBModel.FK_User_Region" FromRole="Region" ToRole="User" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -482,15 +611,15 @@
           <Property Name="ParticipationID" Type="Int32" Nullable="false" />
           <Property Name="Module" Type="Int32" />
           <Property Name="Mark" Type="Double" />
-          <NavigationProperty Name="Participation" Relationship="Self.FK_Result_Participation" FromRole="Result" ToRole="Participation" />
+          <NavigationProperty Name="Participation" Relationship="WSR2017_DBModel.FK_Result_Participation" FromRole="Result" ToRole="Participation" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="WSR2017_DBModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Shedule">
           <Key>
@@ -505,14 +634,29 @@
           <Property Name="Definition" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ChampionshipID" Type="Int32" />
-          <NavigationProperty Name="Championship" Relationship="Self.FK_Shedule_Championship" FromRole="Shedule" ToRole="Championship" />
-          <NavigationProperty Name="Competition" Relationship="Self.FK_Shedule_Competition" FromRole="Shedule" ToRole="Competition" />
+          <NavigationProperty Name="Championship" Relationship="WSR2017_DBModel.FK_Shedule_Championship" FromRole="Shedule" ToRole="Championship" />
+          <NavigationProperty Name="Competition" Relationship="WSR2017_DBModel.FK_Shedule_Competition" FromRole="Shedule" ToRole="Competition" />
+        </EntityType>
+        <EntityType Name="Sponsorship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ChampionshipID" Type="Int32" Nullable="false" />
+          <Property Name="SkillsID" Type="Int32" Nullable="false" />
+          <Property Name="SponsorClassName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Sponsor" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Championship" Relationship="WSR2017_DBModel.FK_Sponsorship_Championship" FromRole="Sponsorship" ToRole="Championship" />
+          <NavigationProperty Name="Competition" Relationship="WSR2017_DBModel.FK_Sponsorship_Competition" FromRole="Sponsorship" ToRole="Competition" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -524,7 +668,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_Team" FromRole="Team" ToRole="Participation" />
+          <NavigationProperty Name="Participation" Relationship="WSR2017_DBModel.FK_Participation_Team" FromRole="Team" ToRole="Participation" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -546,13 +690,13 @@
           <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ContactAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="IsRemember" Type="Boolean" />
-          <NavigationProperty Name="Participation" Relationship="Self.FK_Participation_User" FromRole="User" ToRole="Participation" />
-          <NavigationProperty Name="Region" Relationship="Self.FK_User_Region" FromRole="User" ToRole="Region" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Participation" Relationship="WSR2017_DBModel.FK_Participation_User" FromRole="User" ToRole="Participation" />
+          <NavigationProperty Name="Region" Relationship="WSR2017_DBModel.FK_User_Region" FromRole="User" ToRole="Region" />
+          <NavigationProperty Name="Role" Relationship="WSR2017_DBModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Participation_Championship">
-          <End Role="Championship" Type="Self.Championship" Multiplicity="0..1" />
-          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Championship" Role="Championship" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Participation" Role="Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Championship">
               <PropertyRef Name="ID" />
@@ -563,8 +707,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Shedule_Championship">
-          <End Role="Championship" Type="Self.Championship" Multiplicity="0..1" />
-          <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Championship" Role="Championship" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Shedule" Role="Shedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Championship">
               <PropertyRef Name="ID" />
@@ -574,9 +718,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sponsorship_Championship">
+          <End Type="WSR2017_DBModel.Championship" Role="Championship" Multiplicity="1" />
+          <End Type="WSR2017_DBModel.Sponsorship" Role="Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Championship">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="ChampionshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Competition_CompetitionGroup">
-          <End Role="CompetitionGroup" Type="Self.CompetitionGroup" Multiplicity="0..1" />
-          <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.CompetitionGroup" Role="CompetitionGroup" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Competition" Role="Competition" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CompetitionGroup">
               <PropertyRef Name="ID" />
@@ -587,8 +743,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Participation_Competition">
-          <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
-          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Competition" Role="Competition" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Participation" Role="Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Competition">
               <PropertyRef Name="ID" />
@@ -599,8 +755,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Shedule_Competition">
-          <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
-          <End Role="Shedule" Type="Self.Shedule" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Competition" Role="Competition" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Shedule" Role="Shedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Competition">
               <PropertyRef Name="ID" />
@@ -610,9 +766,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sponsorship_Competition">
+          <End Type="WSR2017_DBModel.Competition" Role="Competition" Multiplicity="1" />
+          <End Type="WSR2017_DBModel.Sponsorship" Role="Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="SkillsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Region_Okrug">
-          <End Role="Okrug" Type="Self.Okrug" Multiplicity="0..1" />
-          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Okrug" Role="Okrug" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Region" Role="Region" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Okrug">
               <PropertyRef Name="ID" />
@@ -623,8 +791,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Participation_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
-          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Participation" Role="Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Team">
               <PropertyRef Name="ID" />
@@ -635,8 +803,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Participation_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Participation" Type="Self.Participation" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.Participation" Role="Participation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
@@ -647,8 +815,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Result_Participation">
-          <End Role="Participation" Type="Self.Participation" Multiplicity="1" />
-          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Participation" Role="Participation" Multiplicity="1" />
+          <End Type="WSR2017_DBModel.Result" Role="Result" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Participation">
               <PropertyRef Name="ID" />
@@ -659,8 +827,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Region">
-          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Region">
               <PropertyRef Name="ID" />
@@ -671,8 +839,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="WSR2017_DBModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="ID" />
@@ -683,72 +851,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CompetitionInChampionship">
-          <End Role="Championship" Type="Self.Championship" Multiplicity="*" />
-          <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Championship" Role="Championship" Multiplicity="*" />
+          <End Type="WSR2017_DBModel.Competition" Role="Competition" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Entity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Championship" EntityType="Self.Championship" />
-          <EntitySet Name="Competition" EntityType="Self.Competition" />
-          <EntitySet Name="CompetitionGroup" EntityType="Self.CompetitionGroup" />
-          <EntitySet Name="Event" EntityType="Self.Event" />
-          <EntitySet Name="Okrug" EntityType="Self.Okrug" />
-          <EntitySet Name="Participation" EntityType="Self.Participation" />
-          <EntitySet Name="Region" EntityType="Self.Region" />
-          <EntitySet Name="Result" EntityType="Self.Result" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Shedule" EntityType="Self.Shedule" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Team" EntityType="Self.Team" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Participation_Championship" Association="Self.FK_Participation_Championship">
-            <End Role="Championship" EntitySet="Championship" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Shedule_Championship" Association="Self.FK_Shedule_Championship">
-            <End Role="Championship" EntitySet="Championship" />
-            <End Role="Shedule" EntitySet="Shedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Competition_CompetitionGroup" Association="Self.FK_Competition_CompetitionGroup">
-            <End Role="CompetitionGroup" EntitySet="CompetitionGroup" />
-            <End Role="Competition" EntitySet="Competition" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participation_Competition" Association="Self.FK_Participation_Competition">
-            <End Role="Competition" EntitySet="Competition" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Shedule_Competition" Association="Self.FK_Shedule_Competition">
-            <End Role="Competition" EntitySet="Competition" />
-            <End Role="Shedule" EntitySet="Shedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Region_Okrug" Association="Self.FK_Region_Okrug">
-            <End Role="Okrug" EntitySet="Okrug" />
-            <End Role="Region" EntitySet="Region" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participation_Team" Association="Self.FK_Participation_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participation_User" Association="Self.FK_Participation_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Participation" EntitySet="Participation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Result_Participation" Association="Self.FK_Result_Participation">
-            <End Role="Participation" EntitySet="Participation" />
-            <End Role="Result" EntitySet="Result" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Region" Association="Self.FK_User_Region">
-            <End Role="Region" EntitySet="Region" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="CompetitionInChampionship" Association="Self.CompetitionInChampionship">
-            <End Role="Championship" EntitySet="Championship" />
-            <End Role="Competition" EntitySet="Competition" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -758,164 +863,178 @@
           <EntitySetMapping Name="Championship">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Championship">
               <MappingFragment StoreEntitySet="Championship">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
-                <ScalarProperty Name="Site" ColumnName="Site" />
-                <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CountOfCompetitiors" ColumnName="CountOfCompetitiors" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Competition">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Competition">
               <MappingFragment StoreEntitySet="Competition">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CompetitionGroupID" ColumnName="CompetitionGroupID" />
-                <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
-                <ScalarProperty Name="NameRussian" ColumnName="NameRussian" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="DefinitionRussian" ColumnName="DefinitionRussian" />
-                <ScalarProperty Name="PlanBuildingFilePath" ColumnName="PlanBuildingFilePath" />
-                <ScalarProperty Name="InfrastructureFilePath" ColumnName="InfrastructureFilePath" />
-                <ScalarProperty Name="WSI" ColumnName="WSI" />
-                <ScalarProperty Name="IsTeam" ColumnName="IsTeam" />
                 <ScalarProperty Name="DefinitionEnglish" ColumnName="DefinitionEnglish" />
+                <ScalarProperty Name="IsTeam" ColumnName="IsTeam" />
+                <ScalarProperty Name="WSI" ColumnName="WSI" />
+                <ScalarProperty Name="InfrastructureFilePath" ColumnName="InfrastructureFilePath" />
+                <ScalarProperty Name="PlanBuildingFilePath" ColumnName="PlanBuildingFilePath" />
+                <ScalarProperty Name="DefinitionRussian" ColumnName="DefinitionRussian" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="NameRussian" ColumnName="NameRussian" />
+                <ScalarProperty Name="NameEnglish" ColumnName="NameEnglish" />
+                <ScalarProperty Name="CompetitionGroupID" ColumnName="CompetitionGroupID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompetitionGroup">
             <EntityTypeMapping TypeName="WSR2017_DBModel.CompetitionGroup">
               <MappingFragment StoreEntitySet="CompetitionGroup">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Event">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Event">
               <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Definition" ColumnName="Definition" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
                 <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Definition" ColumnName="Definition" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Okrug">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Okrug">
               <MappingFragment StoreEntitySet="Okrug">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participation">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Participation">
               <MappingFragment StoreEntitySet="Participation">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CompetitorNumber" ColumnName="CompetitorNumber" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
-                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
                 <ScalarProperty Name="CompetitionID" ColumnName="CompetitionID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompetitorNumber" ColumnName="CompetitorNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Region">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Region">
               <MappingFragment StoreEntitySet="Region">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Stolica" ColumnName="Stolica" />
                 <ScalarProperty Name="OkrugID" ColumnName="OkrugID" />
+                <ScalarProperty Name="Stolica" ColumnName="Stolica" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Result">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Result">
               <MappingFragment StoreEntitySet="Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ParticipationID" ColumnName="ParticipationID" />
-                <ScalarProperty Name="Module" ColumnName="Module" />
                 <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="ParticipationID" ColumnName="ParticipationID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shedule">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Shedule">
               <MappingFragment StoreEntitySet="Shedule">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CompetitionID" ColumnName="CompetitionID" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="DateExecution" ColumnName="DateExecution" />
-                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
-                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
-                <ScalarProperty Name="Definition" ColumnName="Definition" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Definition" ColumnName="Definition" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="DateExecution" ColumnName="DateExecution" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="CompetitionID" ColumnName="CompetitionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sponsorship">
+            <EntityTypeMapping TypeName="WSR2017_DBModel.Sponsorship">
+              <MappingFragment StoreEntitySet="Sponsorship">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="SponsorClassName" ColumnName="SponsorClassName" />
+                <ScalarProperty Name="SkillsID" ColumnName="SkillsID" />
+                <ScalarProperty Name="ChampionshipID" ColumnName="ChampionshipID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="WSR2017_DBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Team">
             <EntityTypeMapping TypeName="WSR2017_DBModel.Team">
               <MappingFragment StoreEntitySet="Team">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="WSR2017_DBModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="IsMale" ColumnName="IsMale" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-                <ScalarProperty Name="CompetitionIDForVolunteer" ColumnName="CompetitionIDForVolunteer" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Organization" ColumnName="Organization" />
-                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
                 <ScalarProperty Name="IsRemember" ColumnName="IsRemember" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CompetitionIDForVolunteer" ColumnName="CompetitionIDForVolunteer" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="CompetitionInChampionship" TypeName="WSR2017_DBModel.CompetitionInChampionship" StoreEntitySet="CompetitionInChampionship">
-            <EndProperty Name="Championship">
-              <ScalarProperty Name="ID" ColumnName="ChampionshipID" />
-            </EndProperty>
             <EndProperty Name="Competition">
               <ScalarProperty Name="ID" ColumnName="CompettitionID" />
+            </EndProperty>
+            <EndProperty Name="Championship">
+              <ScalarProperty Name="ID" ColumnName="ChampionshipID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

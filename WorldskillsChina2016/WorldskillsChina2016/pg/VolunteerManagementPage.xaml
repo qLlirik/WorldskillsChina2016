@@ -25,10 +25,10 @@
                         <TextBlock Text="              Sort by: "/>
                         <ComboBox x:Name="cbxSortBy" Width="200" FontSize="14"/>
                     </StackPanel>
-                    <Button Content="Search" Width="100" Margin="10"/>
+                    <Button Click="click_Search" Content="Search" Width="100" Margin="10"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Import volunteers" Width="250" Height="50" Margin="10"/>
+                    <Button Click="click_ImportVolunteers" Content="Import volunteers" Width="250" Height="50" Margin="10"/>
                     <Button Width="250" Height="50" Margin="10">
                         <Grid>
                             <TextBlock TextAlignment="Center">
@@ -96,14 +96,17 @@
             </ListView>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                <TextBlock Text="Cuttent Page / Total Pages" FontStyle="Italic" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock FontStyle="Italic" FontWeight="Bold" FontSize="14" VerticalAlignment="Center">
+                    <Run x:Name="txbCurrentPage">Current Page</Run> /
+                    <Run x:Name="txbTotalPage">Total Page</Run> 
+                </TextBlock>
                 <Button Click="click_First" Content="First" Margin="10 0"/>
-                <Button Content="Previous" Margin="10 0"/>
-                <Button Content="Next" Margin="10 0"/>
-                <Button Content="Last" Margin="10 0"/>
+                <Button Click="click_Previous" Content="Previous" Margin="10 0"/>
+                <Button Click="click_Next" Content="Next" Margin="10 0"/>
+                <Button Click="click_Last" Content="Last" Margin="10 0"/>
                 <TextBlock Text="Go to Page" VerticalAlignment="Center"/>
                 <TextBox x:Name="txbGoToPage" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10 0"/>
-                <Button Content="Go" Margin="10 0"/>
+                <Button Click="click_Go" Content="Go" Margin="10 0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

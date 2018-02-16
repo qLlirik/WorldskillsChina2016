@@ -22,8 +22,8 @@
                             <Run x:Name="txbName"/>
                     </TextBlock>
                     <Button Click="click_VolunteerManagment" Content="Volunteer Management" Width="250" Height="50" Margin="10" />
-                    <Button Content="Sponsorship Management" Width="250" Height="50" Margin="10" />
-                    <Button Content="Competition Service" Width="250" Height="50" Margin="10" />
+                    <Button Click="click_SponsorshipManagement" Content="Sponsorship Management" Width="250" Height="50" Margin="10" />
+                    <Button Click="Click_CompetitionService" Content="Competition Service" Width="250" Height="50" Margin="10" />
                 </StackPanel>
             </Border>
         </StackPanel>

@@ -19,6 +19,7 @@ namespace WorldskillsChina2016.md
         {
             this.Participation = new HashSet<Participation>();
             this.Shedule = new HashSet<Shedule>();
+            this.Sponsorship = new HashSet<Sponsorship>();
             this.Championship = new HashSet<Championship>();
         }
     
@@ -39,6 +40,8 @@ namespace WorldskillsChina2016.md
         public virtual ICollection<Participation> Participation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shedule> Shedule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sponsorship> Sponsorship { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Championship> Championship { get; set; }
     }

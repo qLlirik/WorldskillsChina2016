@@ -35,5 +35,15 @@ namespace WorldskillsChina2016.pg
         {
             MainWindow.OpenPage(new VolunteerManagementPage());
         }
+
+        private void click_SponsorshipManagement(object sender, RoutedEventArgs e)
+        {
+            MainWindow.OpenPage(new SponsorshipManagementPage());
+        }
+
+        private void Click_CompetitionService(object sender, RoutedEventArgs e)
+        {
+            MainWindow.OpenPage(new CompetitionServicePage());
+        }
     }
 }

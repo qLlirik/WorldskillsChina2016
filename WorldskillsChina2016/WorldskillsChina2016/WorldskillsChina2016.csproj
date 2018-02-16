@@ -49,6 +49,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,6 +81,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cs\PageInitialize.cs" />
+    <Compile Include="cs\Sponsorship.cs" />
+    <Compile Include="cs\StaticClass.cs" />
     <Compile Include="cs\User.cs" />
     <Compile Include="cs\UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
@@ -104,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pg\CompetitionServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pg\CompetitionSkillsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,7 +123,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pg\ExportSponsorshipDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pg\HistoryOfWorldskillsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pg\ImportVolunteersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +160,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pg\PreviousCompetitionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pg\SponsorshipManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pg\SponsorshipStatisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pg\SponsorshipViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +226,9 @@
     <Compile Include="md\Shedule.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="md\Sponsorship.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="md\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -220,6 +250,9 @@
     <Compile Include="pg\AdministratorMenuPage.xaml.cs">
       <DependentUpon>AdministratorMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pg\CompetitionServicePage.xaml.cs">
+      <DependentUpon>CompetitionServicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pg\CompetitionSkillsPage.xaml.cs">
       <DependentUpon>CompetitionSkillsPage.xaml</DependentUpon>
     </Compile>
@@ -229,8 +262,14 @@
     <Compile Include="pg\CoordinatorMenuPage.xaml.cs">
       <DependentUpon>CoordinatorMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pg\ExportSponsorshipDetailPage.xaml.cs">
+      <DependentUpon>ExportSponsorshipDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pg\HistoryOfWorldskillsPage.xaml.cs">
       <DependentUpon>HistoryOfWorldskillsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pg\ImportVolunteersPage.xaml.cs">
+      <DependentUpon>ImportVolunteersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pg\JudgerMenuPage.xaml.cs">
       <DependentUpon>JudgerMenuPage.xaml</DependentUpon>
@@ -252,6 +291,15 @@
     </Compile>
     <Compile Include="pg\PreviousCompetitionsPage.xaml.cs">
       <DependentUpon>PreviousCompetitionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pg\SponsorshipManagementPage.xaml.cs">
+      <DependentUpon>SponsorshipManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pg\SponsorshipStatisticsPage.xaml.cs">
+      <DependentUpon>SponsorshipStatisticsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pg\SponsorshipViewPage.xaml.cs">
+      <DependentUpon>SponsorshipViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pg\VolunteerManagementPage.xaml.cs">
       <DependentUpon>VolunteerManagementPage.xaml</DependentUpon>
@@ -299,6 +347,13 @@
     <Resource Include="im\TheFirstNatioanlCompetition.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="im\NonImage.png" />
+    <Resource Include="im\FireControlCenter.PNG" />
+    <Resource Include="im\MedicalStation.png" />
+    <Resource Include="im\ServiceCenter.png" />
+    <Resource Include="im\TheLayoutOfVenue.PNG" />
+    <Resource Include="im\WashRoom.png" />
+    <Resource Include="im\DrinkPoint.png" />
     <Content Include="md\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

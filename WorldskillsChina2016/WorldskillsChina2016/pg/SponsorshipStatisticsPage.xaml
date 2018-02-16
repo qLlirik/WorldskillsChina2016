@@ -1,0 +1,68 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.SponsorshipStatisticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="Sponsorship Statistics" FontSize="16" FontFamily="Calibri">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Sponsorship Statistics" FontSize="25" Margin="20" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <TextBlock Text="Event: " VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbxEvent" Width="300" IsEditable="True"/>
+                <TextBlock Text="   Class by: " VerticalAlignment="Center"/>
+                <ComboBox x:Name="cbxClassBy" Width="200" IsEditable="True"/>
+                <Button Click="click_Statistiks" Content="Statistics" Margin="10 0 0 0"/>
+            </StackPanel>
+
+            <TextBlock HorizontalAlignment="Center" Margin="5">
+                <Run>Total Amount(P): </Run>
+                <Run x:Name="txbTotalAmount"/>
+            </TextBlock>
+
+            <ListView x:Name="lv" Width="750" Height="300">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Photo" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=IMG}" Margin="5"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="SponsorClassName" Width="140">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=SponsorClassName}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Sponsors" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Sponsor}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Amount(P)" Width="130">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Amount}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+        </StackPanel>   
+    </Grid>
+</Page>

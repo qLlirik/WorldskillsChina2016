@@ -1,0 +1,18 @@
+﻿<Page x:Class="WorldskillsChina2016.pg.SponsorshipManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorldskillsChina2016.pg"
+      mc:Ignorable="d" 
+      d:DesignHeight="486" d:DesignWidth="790"
+      Title="Sponsorship Management" FontSize="16" FontFamily="Calibri">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Sponsorship Management" FontSize="25" Margin="20"/>
+            <Button Click="click_SpnsorshipStatistics" Content="Sponsorship Statistics" Width="250" Height="40" Margin="10"/>
+            <Button Click="Click_SponsorshipView" Content="Sponsorship View" Width="250" Height="40" Margin="10"/>
+            <Button Content="Sponsorship Chart" Width="250" Height="40" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Page>

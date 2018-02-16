@@ -35,6 +35,7 @@ namespace WorldskillsChina2016.md
         public virtual DbSet<Result> Result { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Shedule> Shedule { get; set; }
+        public virtual DbSet<Sponsorship> Sponsorship { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<User> User { get; set; }

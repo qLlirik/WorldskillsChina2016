@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\user\documents\visual studio 2015\Projects\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\
 WorldskillsChina2016
 none
 false
 DEBUG;TRACE
-C:\Users\user\documents\visual studio 2015\Projects\WorldskillsChina2016\WorldskillsChina2016\App.xaml
-18200528654
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\App.xaml
+24-1273538463
 2-1386001203
-401208845712
-19788899976
-cs\UserControl1.xaml;MainWindow.xaml;pg\AboutShangHaiPage.xaml;pg\AboutWorldskillsChinaPage.xaml;pg\AboutWorldskillsPage.xaml;pg\AdministratorMenuPage.xaml;pg\CompetitionSkillsPage.xaml;pg\CompetitorMenuPage.xaml;pg\CoordinatorMenuPage.xaml;pg\HistoryOfWorldskillsPage.xaml;pg\JudgerMenuPage.xaml;pg\LoginPage.xaml;pg\MainScreenPage.xaml;pg\MyProfilePage.xaml;pg\MyResultsPage.xaml;pg\MySkillsPage.xaml;pg\PreviousCompetitionsPage.xaml;pg\VolunteerManagementPage.xaml;
+49-917405689
+20-757316574
+cs\UserControl1.xaml;MainWindow.xaml;pg\AboutShangHaiPage.xaml;pg\AboutWorldskillsChinaPage.xaml;pg\AboutWorldskillsPage.xaml;pg\AdministratorMenuPage.xaml;pg\CompetitionServicePage.xaml;pg\CompetitionSkillsPage.xaml;pg\CompetitorMenuPage.xaml;pg\CoordinatorMenuPage.xaml;pg\ExportSponsorshipDetailPage.xaml;pg\HistoryOfWorldskillsPage.xaml;pg\ImportVolunteersPage.xaml;pg\JudgerMenuPage.xaml;pg\LoginPage.xaml;pg\MainScreenPage.xaml;pg\MyProfilePage.xaml;pg\MyResultsPage.xaml;pg\MySkillsPage.xaml;pg\PreviousCompetitionsPage.xaml;pg\SponsorshipManagementPage.xaml;pg\SponsorshipStatisticsPage.xaml;pg\SponsorshipViewPage.xaml;pg\VolunteerManagementPage.xaml;
 
 False
 
