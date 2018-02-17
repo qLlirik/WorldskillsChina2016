@@ -21,7 +21,7 @@
                             <Run x:Name="txbGenderHi"/>
                             <Run x:Name="txbName"/>
                     </TextBlock>
-                    <Button Content="Event Management" Width="250" Height="50" Margin="10" />
+                    <Button Click="Click_EventMagement" Content="Event Management" Width="250" Height="50" Margin="10" />
                     <Button Content="Competitor Management" Width="250" Height="50" Margin="10" />
                 </StackPanel>
             </Border>

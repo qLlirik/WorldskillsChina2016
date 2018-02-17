@@ -29,5 +29,10 @@ namespace WorldskillsChina2016.pg
             txbGenderHi.Text = LoginPage.AuthorizationUser.IsMale == true ? "Mr." : "Mrs.";
             txbName.Text = LoginPage.AuthorizationUser.FirstName;
         }
+
+        private void Click_EventMagement(object sender, RoutedEventArgs e)
+        {
+            MainWindow.OpenPage(new EventManagementPage());
+        }
     }
 }

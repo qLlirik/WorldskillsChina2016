@@ -119,3 +119,8 @@ C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\Worldsk
 C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\ExportSponsorshipDetailPage.baml
 C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\CompetitionServicePage.g.cs
 C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\CompetitionServicePage.baml
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\WorldskillsChina2016.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\CompetitionEventPage.g.cs
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\EventManagementPage.g.cs
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\CompetitionEventPage.baml
+C:\Users\user\Documents\GitHub\WorldskillsChina2016\WorldskillsChina2016\WorldskillsChina2016\obj\Debug\pg\EventManagementPage.baml

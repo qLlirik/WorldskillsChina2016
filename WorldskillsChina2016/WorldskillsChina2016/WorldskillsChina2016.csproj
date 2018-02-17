@@ -80,6 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="cs\Championship.cs" />
     <Compile Include="cs\PageInitialize.cs" />
     <Compile Include="cs\Sponsorship.cs" />
     <Compile Include="cs\StaticClass.cs" />
@@ -107,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pg\CompetitionEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pg\CompetitionServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pg\CoordinatorMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pg\EventManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +259,9 @@
     <Compile Include="pg\AdministratorMenuPage.xaml.cs">
       <DependentUpon>AdministratorMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pg\CompetitionEventPage.xaml.cs">
+      <DependentUpon>CompetitionEventPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pg\CompetitionServicePage.xaml.cs">
       <DependentUpon>CompetitionServicePage.xaml</DependentUpon>
     </Compile>
@@ -261,6 +273,9 @@
     </Compile>
     <Compile Include="pg\CoordinatorMenuPage.xaml.cs">
       <DependentUpon>CoordinatorMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pg\EventManagementPage.xaml.cs">
+      <DependentUpon>EventManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pg\ExportSponsorshipDetailPage.xaml.cs">
       <DependentUpon>ExportSponsorshipDetailPage.xaml</DependentUpon>
